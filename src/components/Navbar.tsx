@@ -2,10 +2,15 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Briefcase, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isHome = pathname === "/";
+  const isFindJobs = pathname === "/jobs" ;
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
@@ -27,24 +32,32 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center space-x-9">
             <Link
               href="/"
-              className="text-sm font-semibold text-blue-600 transition-colors"
+              className={`text-sm transition-colors ${
+                isHome
+                  ? "font-semibold text-blue-600"
+                  : "font-medium text-slate-600 hover:text-slate-950"
+              }`}
             >
               Home
             </Link>
             <Link
-              href="#jobs"
-              className="text-sm font-medium text-slate-600 hover:text-slate-950 transition-colors"
+              href="/jobs"
+              className={`text-sm transition-colors ${
+                isFindJobs
+                  ? "font-semibold text-blue-600"
+                  : "font-medium text-slate-600 hover:text-slate-950"
+              }`}
             >
               Find Jobs
             </Link>
             <Link
-              href="#companies"
+              href="/companies"
               className="text-sm font-medium text-slate-600 hover:text-slate-950 transition-colors"
             >
               Companies
             </Link>
             <Link
-              href="#about"
+              href="/about"
               className="text-sm font-medium text-slate-600 hover:text-slate-950 transition-colors"
             >
               About
@@ -87,26 +100,30 @@ export default function Navbar() {
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg font-medium text-blue-600 bg-blue-50"
+              className={`px-3 py-2 rounded-lg font-medium ${
+                isHome ? "text-blue-600 bg-blue-50" : "text-slate-700 hover:bg-slate-50"
+              }`}
             >
               Home
             </Link>
             <Link
-              href="#jobs"
+              href="/jobs"
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-50"
+              className={`px-3 py-2 rounded-lg font-medium ${
+                isFindJobs ? "text-blue-600 bg-blue-50" : "text-slate-700 hover:bg-slate-50"
+              }`}
             >
               Find Jobs
             </Link>
             <Link
-              href="#companies"
+              href="/companies"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-50"
             >
               Companies
             </Link>
             <Link
-              href="#about"
+              href="/about"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-50"
             >

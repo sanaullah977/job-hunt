@@ -55,7 +55,7 @@ export default function HomePage() {
         {/* Explore by Category */}
         <Categories onSelectCategory={handleSelectCategory} />
 
-        {/* Featured Jobs with Filter Sidebar */}
+        {/* Featured Jobs with Filter Sidebar & Reusable Job Cards */}
         <FeaturedJobs />
 
         {/* Blue Stats Highlights Banner */}
